@@ -97,6 +97,7 @@ public class CordovaActivity extends Activity {
     protected String launchUrl;
     protected ArrayList<PluginEntry> pluginEntries;
     protected CordovaInterfaceImpl cordovaInterface;
+	protected int drawableId;
 
     /**
      * Called when the activity is first created.
@@ -148,6 +149,9 @@ public class CordovaActivity extends Activity {
         if (!appView.isInitialized()) {
             appView.init(cordovaInterface, pluginEntries, preferences);
         }
+		if(drawableId!=0){
+			 preferences.setInteger("SplashDrawableId", drawableId);
+		}
         cordovaInterface.onCordovaInit(appView.getPluginManager());
 
         // Wire the hardware volume controls to control media if desired.
@@ -514,5 +518,9 @@ public class CordovaActivity extends Activity {
         }
 
     }
+	
+	public void setDrawableId(int drawableId){
+		this.drawableId=drawableId;
+	}
 
 }
